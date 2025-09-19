@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenges</title>
+  <link rel="stylesheet" href="challenges.css">
+
+  <style>
+    body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #222;
+}
+
+/* Header */
+.header {
+  background: #2eb82e;
+  color: white;
+  padding: 40px 20px 60px;
+  text-align: left;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+}
+.idea-btn {
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  border: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+.idea-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Suggestions */
+.suggestions {
+  padding: 20px;
+}
+.suggestions h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.suggestion-list {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.suggestion img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+.suggestion p {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Favorite challenges */
+.favorites {
+  padding: 20px;
+}
+.favorites h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.challenge-card {
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+  height: 130px;
+  display: flex;
+  align-items: flex-end;
+}
+.challenge-content {
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.challenge-content p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+.reward {
+  background: #ffcc00;
+  color: black;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.reward img {
+  width: 14px;
+  height: 14px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #ddd;
+  padding: 8px 0;
+}
+.bottom-nav a {
+  text-align: center;
+  color: #666;
+  text-decoration: none;
+  font-size: 12px;
+}
+.bottom-nav img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  margin: 0 auto 4px;
+}
+.bottom-nav a.active {
+  color: #ffcc00;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>Find challenges</h1>
+    <button class="idea-btn"><img src="idea.png" alt="Idea"></button>
+  </header>
+
+  <!-- Suggestions -->
+  <section class="suggestions">
+    <h2>Our suggestions</h2>
+    <div class="suggestion-list">
+      <div class="suggestion">
+        <img src="easy.png" alt="Easy">
+        <p>Easy</p>
+      </div>
+      <div class="suggestion">
+        <img src="savings.png" alt="Savings">
+        <p>Savings</p>
+      </div>
+      <div class="suggestion">
+        <img src="healthy.png" alt="Healthy">
+        <p>Healthy</p>
+      </div>
+      <div class="suggestion">
+        <img src="co2.png" alt="CO2">
+        <p>All</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Favorite challenges -->
+  <section class="favorites">
+    <h2>Favorite challenges</h2>
+
+    <div class="challenge-card" style="background-image: url('standby.jpg');">
+      <div class="challenge-content">
+        <p>I switch off my devices on standby</p>
+        <span class="reward">+ 1 <img src="diamond.png" alt="Diamond"></span>
+      </div>
+    </div>
+
+    <div class="challenge-card" style="background-image: url('letterbox.jpg');">
+      <div class="challenge-content">
+        <p>I'm sticking a stop ad on my letterbox</p>
+        <span class="reward">+ 4 <img src="diamond.png" alt="Diamond"></span>
+      </div>
+    </div>
+
+    <div class="challenge-card" style="background-image: url('social.jpg');">
+      <div class="challenge-content">
+        <p>I'm an environmentalist influencer on social networks</p>
+        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <a href="home.html"><img src="home.png" alt="Home"><span>Home</span></a>
+    <a href="challenges.html" class="active"><img src="challenges.png" alt="Challenges"><span>Challenges</span></a>
+    <a href="profile.html"><img src="profile.png" alt="Profile"><span>Profile</span></a>
+    <a href="company.html"><img src="company.png" alt="Company"><span>Company</span></a>
+  </nav>
+
+</body>
+</html>
