@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      min-height: 100vh;
+      padding-bottom: 80px; /* leave space for bottom nav */
+      overflow-y: auto;      /* allow scrolling */
+    }
+
+    /* Header background layers */
+    .header-bg, .header-bg2 {
+      position: absolute;
+      height: 220px;
+      background: linear-gradient(135deg, #4CAF50 40%, #2e7d32 100%);
+      border-bottom-left-radius: 50% 20%;
+      border-bottom-right-radius: 50% 80%;
+      z-index: -10;
+    }
+
+    .header-bg { top: -100px; left: -900px; right: 0; }
+    .header-bg2 { top: -130px; left: 0; right: -300px; transform: rotate(15deg); opacity: 0.7; z-index: -9; }
+
+    /* Header content */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 15px 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: bold;
+      color: #388e3c;
+      background: #fff;
+      padding: 8px 20px;
+      border-radius: 10px;
+    }
+
+    h2 { font-size: 18px; font-weight: bold; margin: 20px; color: #222; }
+
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 0 20px 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .card img { width: 40px; height: 40px; margin-right: 15px; border-radius: 8px; }
+    .card-content { flex: 1; }
+    .card-content h3 { font-size: 15px; font-weight: 600; margin-bottom: 3px; color: #333; }
+    .card-content p { font-size: 13px; color: #777; }
+
+    /* Challenge card */
+    .challenge-card {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      color: white;
+      height: 120px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 10px 15px;
+      border-radius: 15px;
+      margin: 0 20px 15px;
+    }
+
+    .challenge-card .points {
+      background: yellow;
+      color: black;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Fixed button */
+    .fixedbtn {
+      position: fixed;
+      top: 30px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: rgba(107, 255, 15, 0.753);   /* visible for testing */
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      z-index: 100;
+    }
+
+    .nav-item { text-align: center; font-size: 12px; color: #777; }
+    .nav-item.active { color: #4CAF50; font-weight: bold; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Fixed button -->
+  <div class="fixedbtn">?</div>
+
+  <!-- Header -->
+  <div class="header-bg"></div>
+  <div class="header-bg2"></div>
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo" style="width:60px;height:60px;">
+    </div>
+    <h1>Act for your future</h1>
+  </div>
+
+  <!-- Content -->
+  <h2>The positive news of the day</h2>
+  <div class="card">
+    <img src="earth.png" alt="earth icon">
+    <div class="card-content">
+      <h3>Maroc: le réseau de TGV s'étend</h3>
+      <p>CNTraveler</p>
+    </div>
+  </div>
+
+  <h2>Today's challenge</h2>
+  <div class="challenge-card" style="background:url('image.png');">
+    <div class="card-content">
+      <h3>I'm watching a film/documentary<br>about ecology</h3>
+    </div>
+    <div class="points">+20 💎</div>
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active">🏠<br>Home</div>
+    <div class="nav-item">🎮<br>Challenges</div>
+    <div class="nav-item">👤<br>Profile</div>
+    <div class="nav-item">🏢<br>Company</div>
+  </div>
+
+</body>
+</html>
+
+  
+    <script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    const pointsEl = document.getElementById('points');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if(user) {
+      pointsEl.textContent = `Points: ${user.points}`;
+    } else {
+      window.location.href = "index.html";
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('user');
+      window.location.href = "index.html";
+    });
+  </script> 
+
+
+
+
+
+
+
+
+
