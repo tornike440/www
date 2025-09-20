@@ -9,15 +9,12 @@ app.use(express.static('public'));
 
 const DATA_FILE = path.join(__dirname, 'data.json');
 
-// Helper to load users
+// Helpers to load and save users
 function loadUsers() {
-  if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, '[]'); // create empty array if no file
-  }
+  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]");
   return JSON.parse(fs.readFileSync(DATA_FILE));
 }
 
-// Helper to save users
 function saveUsers(users) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(users, null, 2));
 }
@@ -42,15 +39,14 @@ app.post('/login', (req, res) => {
   }
 });
 
-// Update points (incremental)
+// Update points (increment)
 app.post('/update-points', (req, res) => {
-  const { username, points } = req.body; 
-  // points = how many points to ADD
+  const { username, points } = req.body; // points to add
   let users = loadUsers();
   let user = users.find(u => u.username === username);
 
   if (user) {
-    user.points += points;  // instead of replacing, we add
+    user.points += points;
     saveUsers(users);
     res.json({ success: true, user });
   } else {
@@ -58,5 +54,11 @@ app.post('/update-points', (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+// Leaderboard
+app.get('/leaderboard', (req, res) => {
+  let users = loadUsers();
+  users.sort((a, b) => b.points - a.points);
+  res.json(users.slice(0, 10));
+});
 
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
