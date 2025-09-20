@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,8 +12,8 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            
-            height: 100vh;
+            min-height: 100vh; /* changed from height:100vh */
+            padding-bottom: 180px;
         }
         .container {
             width: 80%;
@@ -58,6 +58,8 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             cursor: pointer;
             z-index: 1000;
+            border: none;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
         }
         .sec1 {
             display: flex;
@@ -71,7 +73,170 @@
         .sec1 img {
             width: 150px;
             height: auto;
+        }
+        .sec1 h1 {
+            font-size: 40px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            color: black;
+            font-weight: 600;
+        }
+        .sec1 p {
+            font-size: 18px;
+            margin: 0px;
+            color: #333;
+        }
+
+        .sec2 {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .nav1 {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 95%;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .nav1 li {
+            text-align: center;
+            background: #ffd500;
+            padding: 5px;
+            min-width: 150px;
+            line-height: 0.5;
+            border-radius: 1000px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            flex: 1;
+            margin: 0 10px;
+        }
+        .nav1 li p span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .but{
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #ffd500;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-size: 24px;
+        }
+        .but img{
+            width: 30px;
+            height: 30px;
+        }
+
+        .nav2 {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 95%;
+            gap: 5px;
+            flex-wrap: wrap;
             
+        }
+
+        .nav2 li {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            border-radius: 10px;
+            height: 211px;
+            width: 46%;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+        }
+        .nav2 li img {
+            width: 20px;
+            height: auto;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .bottom-nav { 
+            position:fixed; 
+            bottom:0; 
+            left:0; 
+            right:0; 
+            height:70px; 
+            background:white; 
+            display:flex; 
+            justify-content:space-around; 
+            align-items:center; 
+            border-top:1px solid #ddd; 
+            z-index:100; 
+        }
+        .logout-btn {
+            width: 90%;
+            margin: 20px auto;
+            margin-bottom: 0px; /* keep above bottom-nav */
+            padding: 10px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 32px;
+            height: 60px;
+            font-weight: 600;
+        }
+        .slicer {
+            width: 100%;
+            height: 1px;
+            background: #3c3c3c;
+            margin-top: 20px;
+        }
+        .bottom-nav img{ width:24px; height:24px; }
+        .nav-item { text-align:center; font-size:12px; color:#777; }
+        .nav-item a{ text-decoration:none; color:inherit; }
+
+        /* Responsive adjustments */
+        @media (max-width: 383px) {
+            .nav2 li {
+                width: 100%;
+                margin: 10px 0px;
+                
+            }
+            
+            .sec1 h1 {
+                font-size: 28px;
+            }
+            .nav1{
+                gap: 25px;
+            }
+            .nav1 li p {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .nav2{
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            h1{
+                padding: 0px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -82,18 +247,61 @@
     <header>
         <h1>My Profile</h1>
     </header>
-    
-
 
     <section class="sec1">
-
         <img src="sheep.png" alt="">
-        <h1 id="welcomeMsg"></h1>
-        <script>
-            let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            if(!currentUser){ window.location.href="index.html"; }
-            else { document.getElementById('welcomeMsg').textContent = ` ${currentUser.username}`; }
-        </script>
+        <h1 id="nameDisplay"></h1>
+        <p id="usernameDisplay"></p>
+    </section>
+
+    <section class="sec2">
+        <nav class="nav1">
+            <li><p><span><img src="trophy.png" alt="">1456th</span> <br>out of 1600 players</p></li>
+            <li><p><span><img src="leaf.png" alt=""> 0</span> <br>points</p></li>
+        </nav>
+    </section>
+
+    <button class="but"><p>my groups</p> <img src="group.png" alt=""></button>
+    <div class="slicer"></div>
+
+    <h1 style="padding: 5%;">my impact</h1>
+
+    <nav class="nav2">
+        <ul style="display: flex; justify-content: space-around; list-style: none; padding: 0; margin: 0; width: 100%; gap: 5px; flex-wrap: wrap;">
+            <li style="background: #00ff11;">
+                <img src="cloud.png" alt="">
+                <h2>0kg</h2>
+                <p>of CO2 avoided</p>
+            </li>
+            <li style="background: #2672f5;">
+                <img src="money.png" alt="">
+                <h2>$0</h2>
+                <p>of money saved</p>
+            </li>
+        </ul>
+    </nav>
+
+    <button class="logout-btn" onclick="localStorage.removeItem('currentUser'); window.location.href='index.html';">log out</button>
+
+    
+    <div class="bottom-nav">
+        <div class="nav-item"><a href="home.html"><img src="home.png" alt=""><br>Home</a></div>
+        <div class="nav-item"><a href="challenges.html"><img src="challenges.png" alt=""><br>Challenges</a></div>
+        <div class="nav-item"><a href="profile.html"><img src="profile.png" alt=""><br>Profile</a></div>
+        <div class="nav-item"><a href="company.html"><img src="chatbot.png" alt=""><br>Company</a></div>
+    </div>
+
+    <script>
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if(!currentUser){
+            window.location.href="index.html"; 
+        } else {
+            // Print full name in h1
+            document.getElementById('nameDisplay').textContent = `${currentUser.name}`;
+            // Print username in p
+            document.getElementById('usernameDisplay').textContent = `${currentUser.username}`;
+        }
+    </script>
 
 </body>
 </html>
