@@ -16,8 +16,8 @@ form.addEventListener('submit', async e => {
   const data = await res.json();
 
   if (data.success) {
-    // Redirect to home.html with username in query string
-    window.location.href = `home.html?user=${encodeURIComponent(data.user.username)}`;
+    // Redirect to home.html
+    window.location.href = 'home.html';
   } else {
     message.textContent = data.message;
   }
