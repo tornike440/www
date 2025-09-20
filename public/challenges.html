@@ -8,7 +8,7 @@
 <style>
   
 * { box-sizing:border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
-body { background:#f5f5f5; padding-bottom:80px;font-family: "ALK Life", sans-serif; }
+body { background:#009688; padding-bottom:80px;font-family: "ALK Life", sans-serif; }
 .header { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; text-align:left; padding:30px 20px 15px; background:#4CAF50; color:white; border-bottom-left-radius:20px; border-bottom-right-radius:20px; }
 .header h1 { font-size:24px; font-weight:bold; }
 .header .logout { margin-top:10px; padding:6px 12px; background:#388e3c; color:white; border:none; border-radius:6px; cursor:pointer; }
@@ -16,10 +16,25 @@ body { background:#f5f5f5; padding-bottom:80px;font-family: "ALK Life", sans-ser
 .suggestions img { width:50px; height:50px; }
 .suggestions div { text-align:center; font-size:12px; margin-top:5px; }
 .challenge-list { padding:0 20px; }
-.challenge-card { position:relative; border-radius:15px; margin-bottom:15px; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px; height:100px; background-size:cover; background-position:center; }
-.challenge-card .points { background:yellow; color:black; padding:4px 10px; border-radius:20px; font-weight:bold; }
+.challenge-card { position:relative; border-radius:15px; margin-bottom:15px; color:rgb(92, 92, 92); display:flex; justify-content:space-between; align-items:center; padding:15px; height:100px; background-size:cover; background-position:center; border: 1px solid #25c81d; }
+.challenge-card .points { background:yellow; color:black; padding:4px 10px; border-radius:2}
 .challenge-card button { margin-left:10px; padding:4px 8px; border:none; border-radius:6px; background:#388e3c; color:white; cursor:pointer; }
 .challenge-card button:hover { background:#2e7d32; }
+.points { 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin-top: 5px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px; 
+  border-radius: 4px; 
+  display: inline-block; 
+  background-color: #4CAF50; /* Set a background color */
+  color: white; /* Text color */
+  padding: 4px 8px; /* Padding for better visual */
+}
+
 .bottom-nav { position:fixed; bottom:0; left:0; right:0; height:70px; background:white; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #ddd; z-index:100; }
 .nav-item { text-align:center; font-size:12px; color:#777; text-decoration:none; }
 .nav-item.active { color:#4CAF50; font-weight:bold; }
@@ -29,9 +44,9 @@ body { background:#f5f5f5; padding-bottom:80px;font-family: "ALK Life", sans-ser
 <body>
 
 <div class="header">
-  <h1>Find challenges</h1>
+  <h1>Find challenges </h1>
   <p id="welcomeMsg"></p>
-  <button class="logout" id="logoutBtn">Logout</button>
+  
 </div>
 
 <div class="suggestions">
@@ -43,7 +58,41 @@ body { background:#f5f5f5; padding-bottom:80px;font-family: "ALK Life", sans-ser
 
 <h2 style="margin:0 20px 10px;">Favorite challenges</h2>
 <div class="challenge-list" id="challengeList">
-  <!-- Dynamic challenge cards will go here -->
+  <div class="challenge-card" style="background-image:url('plant-tree.jpg')">
+    <div>Plant a tree in your neighborhood</div>
+    <div>
+      <span class="points">+5 <img src="leaf.png" alt=""></span>
+      
+    </div>
+  </div>
+  <div class="challenge-card" style="background-image:url('bike-work.jpg')">
+    <div>Bike or walk to work for a week</div>
+    <div>
+      <span class="points">+7 <img src="leaf.png" alt=""></span>
+      
+    </div>
+  </div>
+  <div class="challenge-card" style="background-image:url('meatless-monday.jpg')">
+    <div>Try a meatless Monday</div>
+    <div>
+      <span class="points">+3 <img src="leaf.png" alt=""></span>
+      
+    </div>
+  </div>
+  <div class="challenge-card" style="background-image:url('reusable-bag.jpg')">
+    <div>Use a reusable bag for all shopping this week</div>
+    <div>
+      <span class="points">+2 <img src="leaf.png" alt=""></span>
+      
+    </div>
+  </div>
+  <div class="challenge-card" style="background-image:url('cleanup-event.jpg')">
+    <div>Join a local park or beach cleanup event</div>
+    <div>
+      <span class="points">+6 <img src="leaf.png" alt=""></span>
+      
+    </div>
+  </div>
 </div>
 
 <div class="bottom-nav">
