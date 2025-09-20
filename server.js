@@ -9,14 +9,27 @@ app.use(express.static('public'));
 
 const DATA_FILE = path.join(__dirname, 'data.json');
 
+// Helper to load users
+function loadUsers() {
+  if (!fs.existsSync(DATA_FILE)) {
+    fs.writeFileSync(DATA_FILE, '[]'); // create empty array if no file
+  }
+  return JSON.parse(fs.readFileSync(DATA_FILE));
+}
+
+// Helper to save users
+function saveUsers(users) {
+  fs.writeFileSync(DATA_FILE, JSON.stringify(users, null, 2));
+}
+
 // Login/Register
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  const users = JSON.parse(fs.readFileSync(DATA_FILE));
+  let users = loadUsers();
   let user = users.find(u => u.username === username);
 
-  if(user){
-    if(user.password === password){
+  if (user) {
+    if (user.password === password) {
       res.json({ success: true, user });
     } else {
       res.json({ success: false, message: "Incorrect password" });
@@ -24,20 +37,21 @@ app.post('/login', (req, res) => {
   } else {
     user = { username, password, points: 0 };
     users.push(user);
-    fs.writeFileSync(DATA_FILE, JSON.stringify(users, null, 2));
+    saveUsers(users);
     res.json({ success: true, user, message: "User registered" });
   }
 });
 
-// Update points
+// Update points (incremental)
 app.post('/update-points', (req, res) => {
-  const { username, points } = req.body;
-  const users = JSON.parse(fs.readFileSync(DATA_FILE));
+  const { username, points } = req.body; 
+  // points = how many points to ADD
+  let users = loadUsers();
   let user = users.find(u => u.username === username);
 
-  if(user){
-    user.points = points;
-    fs.writeFileSync(DATA_FILE, JSON.stringify(users, null, 2));
+  if (user) {
+    user.points += points;  // instead of replacing, we add
+    saveUsers(users);
     res.json({ success: true, user });
   } else {
     res.json({ success: false, message: "User not found" });
@@ -45,3 +59,4 @@ app.post('/update-points', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+
