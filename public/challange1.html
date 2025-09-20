@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
         *{
             margin: 0;
             padding: 0;
@@ -19,7 +18,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* changed from height:100vh */
+            min-height: 100vh; 
             padding-bottom: 180px;
         }
 
@@ -31,7 +30,6 @@
             gap: 50px;
             padding: 50px 20px;
             border-bottom: 10px solid green;
-
         }
 
         header p{
@@ -43,7 +41,6 @@
             display: flex;
             flex-direction: row;
             gap: 10px;
-
         }
         .div1 img{
             width: 30px;
@@ -58,28 +55,25 @@
             color: white;
         }
 
-                
         .points { 
-        
-        font-size: 15px; 
-        font-weight: bold; 
-        display: inline-flex; 
-        align-items: center; 
-        gap: 6px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        background: yellow;
-        color: #388e3c;
-        box-shadow: 0 2px 8px rgba(76,175,80,0.08);
-        border: 1px solid #e0e0a0;
-        margin: 8px 0;
-        transition: box-shadow 0.2s;
-        
+            font-size: 15px; 
+            font-weight: bold; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: yellow;
+            color: #388e3c;
+            box-shadow: 0 2px 8px rgba(76,175,80,0.08);
+            border: 1px solid #e0e0a0;
+            margin: 8px 0;
+            transition: box-shadow 0.2s;
         }
         .points img {
-        width: 18px;
-        height: 18px;
-        margin-left: 4px;
+            width: 18px;
+            height: 18px;
+            margin-left: 4px;
         }
 
         .div2{
@@ -88,7 +82,6 @@
             gap: 15px;
             align-items: center;
         }
-
 
         .nav2 {
             display: flex;
@@ -99,7 +92,6 @@
             width: 95%;
             gap: 5px;
             flex-wrap: wrap;
-            
         }
 
         .nav2 li {
@@ -113,7 +105,7 @@
             box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
         }
         .nav2 li img {
-            width: 20px;
+            width: 60px;
             height: auto;
             margin: 0 auto;
             padding: 20px;
@@ -125,21 +117,45 @@
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #toggleBtn{
+            background-color: #00ff11;
+            height: 50px;
+            border-radius: 25px;
+            width: 180px;
+            border: none;
+            font-size: 20px;
+            
+        }
+
+        #doneBtn{
+            width: 50%;
+            background-color: #00ff11;
+            height: 50px;
+            border-radius: 25px;
+            
+            border: none;
+            font-size: 20px;
 
         }
 
         .div3{
+            flex-wrap: wrap;
+            width: 80%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            gap: 10px;
         }
 
         @media (max-width: 383px) {
             .nav2 li {
                 width: 100%;
                 margin: 10px 0px;
-                
             }
         }
         @media (max-width: 450px) {
@@ -148,63 +164,101 @@
                 align-items: center;
                 gap: 20px;
             }
-            
         }
-
     </style>
 </head>
 <body>
     <header>
-        <div class="div1"><img src="back.png" alt=""> <p>back</p></div>
-        
-
+        <div class="div1"><img src="back.png" alt=""> <a href="challenges.html" style="text-decoration: none;"><p>back</p></a></div>
         <h3 class="normal">I'm going to library</h3>
-
-        
         <div class="div2">
             <div>
                 <span class="points">+3 <img src="leaf.png" alt=""></span>
-                    
             </div>
-
             <p><span>⭐⭐⭐⭐</span>52 ratings</p>
-
-
         </div>
-        
     </header>
 
-
     <section class="sec1">
-
         <div class="div3">
             <h3 class="normal" style="color: black;">Challenge impact</h3>
-
-            <button><span>one time</span>annual</button>
+            <button id="toggleBtn"><span>one time</span> / annual</button>
+            
         </div>
 
+        <nav class="nav2">
+            <ul style="display: flex; justify-content: space-around; list-style: none; padding: 0; margin: 0; width: 100%; gap: 5px; flex-wrap: wrap;">
+                <li style="background: #00ff11;">
+                    <img src="cloud.png" alt="">
+                    <h2>2kg</h2>
+                    <p>of CO2 avoided</p>
+                </li>
+                <li style="background: #2672f5;">
+                    <img src="money.png" alt="">
+                    <h2>$11</h2>
+                    <p>of money saved</p>
+                </li>
+            </ul>
+        </nav>
 
-            <nav class="nav2">
-                <ul style="display: flex; justify-content: space-around; list-style: none; padding: 0; margin: 0; width: 100%; gap: 5px; flex-wrap: wrap;">
-                    <li style="background: #00ff11;">
-                        <img src="cloud.png" alt="">
-                        <h2>0kg</h2>
-                        <p>of CO2 avoided</p>
-                    </li>
-                    <li style="background: #2672f5;">
-                        <img src="money.png" alt="">
-                        <h2>$0</h2>
-                        <p>of money saved</p>
-                    </li>
-                </ul>
-            </nav>
-
-
-
-
+        <button id="doneBtn">Done</button>
     </section>
 
-    
-    
+    <script>
+        // User check
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if(!currentUser){ window.location.href="index.html"; }
+
+        // Challenge data
+        const challengeId = 'library';
+        const oneTime = { co2: 2, savings: 11, points: 3 };
+        const annual = { co2: oneTime.co2*12, savings: oneTime.savings*12, points: oneTime.points*12 };
+
+        let showingAnnual = false;
+        const toggleBtn = document.getElementById("toggleBtn");
+        const doneBtn = document.getElementById("doneBtn");
+
+        // Nav elements
+        const co2El = document.querySelector(".nav2 li:nth-child(1) h2");
+        const moneyEl = document.querySelector(".nav2 li:nth-child(2) h2");
+
+        // Load completed challenges
+        let completed = JSON.parse(localStorage.getItem(`${currentUser.username}_completed`) || '{}');
+        if(completed[challengeId]){
+            co2El.textContent = `${completed[challengeId].co2}kg`;
+            moneyEl.textContent = `$${completed[challengeId].savings}`;
+            doneBtn.disabled = true;
+        }
+
+        // Toggle one-time / annual
+        toggleBtn.addEventListener('click', ()=>{
+            if(completed[challengeId]) return; 
+            showingAnnual = !showingAnnual;
+            co2El.textContent = showingAnnual ? `${annual.co2}kg` : `${oneTime.co2}kg`;
+            moneyEl.textContent = showingAnnual ? `$${annual.savings}` : `$${oneTime.savings}`;
+        });
+
+        // Done button logic
+        doneBtn.addEventListener('click', ()=>{
+            if(completed[challengeId]) return;
+            const selected = showingAnnual ? annual : oneTime;
+
+            // Save completed challenge
+            completed[challengeId] = selected;
+            localStorage.setItem(`${currentUser.username}_completed`, JSON.stringify(completed));
+
+            // Update current user totals
+            currentUser.points = (currentUser.points || 0) + selected.points;
+            currentUser.co2 = (currentUser.co2 || 0) + selected.co2;
+            currentUser.savings = (currentUser.savings || 0) + selected.savings;
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+            co2El.textContent = `${selected.co2}kg`;
+            moneyEl.textContent = `$${selected.savings}`;
+
+            doneBtn.disabled = true;
+            alert(`Challenge completed!\nPoints: ${selected.points}\nCO₂ avoided: ${selected.co2}kg\nSavings: ${selected.savings}$`);
+        });
+    </script>
 </body>
 </html>
