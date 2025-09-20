@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eco Home</title>
   <style>
+    /* === KEEP ALL YOUR ORIGINAL STYLE HERE === */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,8 +17,7 @@
       background-color: #f5f5f5;
       color: #333;
       height: 100vh;
-      padding-bottom: 80px; /* leave space for bottom nav */
-      
+      padding-bottom: 180px; /* leave space for bottom nav */
     }
 
     /* Header background layers */
@@ -143,24 +143,24 @@
       font-size: 12px;
       font-weight: bold;
     }
-    .fixedbtn {
-  position: fixed;
-  top: 30px;
-  right: 20px;
-  width: 60px;  /* bigger */
-  height: 60px; /* bigger */
-  background: red; /* make it visible */
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  cursor: pointer;
-  z-index: 1000; /* extra high */
-}
 
+    .fixedbtn {
+      position: fixed;
+      top: 30px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1000;
+    }
 
     /* Community Impact */
     .impact-card {
@@ -204,33 +204,34 @@
 
     /* Bottom nav */
     .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 70px;
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      border-top: 1px solid #ddd;
-      z-index: 100;
-    }
-
-    .nav-item {
-      text-align: center;
-      font-size: 12px;
-      color: #777;
-    }
-
-    .nav-item.active {
-      color: #4CAF50;
-      font-weight: bold;
-    }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #ddd;
+  padding: 8px 0;
+}
+.bottom-nav a {
+  text-align: center;
+  color: #666;
+  text-decoration: none;
+  font-size: 12px;
+}
+.bottom-nav img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  margin: 0 auto 4px;
+}
+.bottom-nav a.active {
+  color: #ffcc00;
+}
 
     /* Responsive */
     @media (max-width: 480px) {
-        
       .header h1 { font-size: 20px; }
       .logo { width: 80px; height: 80px; }
       .card-content h3 { font-size: 14px;}
@@ -243,16 +244,18 @@
   </style>
 </head>
 <body>
-    <div class="header-bg"></div>
+  <div class="header-bg"></div>
 
+  <div class="fixedbtn">?</div>
 
-    <div class="fixedbtn">?</div>
-
+  <!-- Header -->
   <div class="header">
     <div class="logo">
       <img src="logo.png" alt="Logo" style="width:60px;height:60px;">
     </div>
     <h1>Act for your future</h1>
+    <p id="welcomeMsg"></p>
+    <button id="logoutBtn">Logout</button>
   </div>
 
   <!-- Positive news -->
@@ -267,12 +270,12 @@
 
   <!-- Challenge -->
   <h2>Today's challenge</h2>
-  <div class="challenge-card" style="background:url('image.png');">
-    <div class="card-content">
-      <h3>I'm watching a film/documentary<br>about ecology</h3>
+  <div class="challenge-card" style="background-image: url('image.png');">
+      <div class="challenge-content">
+        <p>I'm an environmentalist influencer on social networks</p>
+        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
+      </div>
     </div>
-    <div class="points">+20 💎</div>
-  </div>
 
   <!-- Friends -->
   <h2>My friends & me</h2>
@@ -288,113 +291,50 @@
   <div class="impact-card">
     <div style="flex:1;">
       <h2>The impact of our community</h2>
-      <p>- 3,823 tons of CO2eq</p>
+      <p id="userPoints">Points: 0</p>
       <p>Equivalent to 2,185 Paris/New York flights avoided</p>
     </div>
     <img src="hand-plant.png" alt="hand holding plant">
   </div>
 
   <!-- Bottom nav -->
-  <div class="bottom-nav">
-    <div class="nav-item active">🏠<br>Home</div>
-    <div class="nav-item">🎮<br>Challenges</div>
-    <div class="nav-item">👤<br>Profile</div>
-    <div class="nav-item">🏢<br>Company</div>
-  </div>
-
-
-
-  <script>
-async function loadUser() {
-  // Get the username from query string (passed from login)
-  const params = new URLSearchParams(window.location.search);
-  const username = params.get('user');
-
-  if (!username) {
-    // No user info → redirect to login
-    window.location.href = "index.html";
-    return;
-  }
-
-  // Fetch user data from server
-  const res = await fetch('/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password: "" }) // password empty, just retrieve
-  });
-
-  const data = await res.json();
-
-  if (!data.success) {
-    window.location.href = "index.html";
-    return;
-  }
-
-  const user = data.user;
-
-  // Update homepage with points
-  const pointsEl = document.getElementById('points');
-  if (pointsEl) pointsEl.textContent = user.points;
-
-  // Logout button
-  const logoutBtn = document.getElementById('logoutBtn');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', async () => {
-      // No localStorage, just redirect
-      window.location.href = "index.html";
-    });
-  }
-
-  // Example: increment points when a challenge is done
-  const challengeBtn = document.getElementById('increasePoints');
-  if (challengeBtn) {
-    challengeBtn.addEventListener('click', async () => {
-      user.points += 10;
-
-      // Update server
-      const updateRes = await fetch('/update-points', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: user.username, points: user.points })
-      });
-      const updateData = await updateRes.json();
-      if (updateData.success) {
-        pointsEl.textContent = updateData.user.points;
-      }
-    });
-  }
-}
-
-// Run on page load
-loadUser();
-</script>
-
+ <nav class="bottom-nav">
+    <a href="home.html"><img src="home.png" alt="Home"><span>Home</span></a>
+    <a href="challenges.html" class="active"><img src="challenges.png" alt="Challenges"><span>Challenges</span></a>
+    <a href="profile.html"><img src="profile.png" alt="Profile"><span>Profile</span></a>
+    <a href="company.html"><img src="chatbot.png" alt="Company"><span>Company</span></a>
+  </nav>
 
   <!-- <script>
-  const user = JSON.parse(localStorage.getItem('user'));
-    const pointsEl = document.getElementById('points');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    if(user) {
-      pointsEl.textContent = `Points: ${user.points}`;
-    } else {
+    // Load current user from localStorage
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) {
       window.location.href = "index.html";
+    } else {
+      document.getElementById('welcomeMsg').textContent = `Hello, ${currentUser.username}!`;
+      document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
     }
 
-    logoutBtn.addEventListener('click', () => {
-      localStorage.removeItem('user');
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem("currentUser");
       window.location.href = "index.html";
     });
-  </script>  -->
 
-
-
-
+    // Complete challenge
+    document.getElementById('completeBtn').addEventListener('click', async () => {
+      const res = await fetch("/update-points", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: currentUser.username, points: 10 })
+      });
+      const data = await res.json();
+      if (data.success) {
+        currentUser = data.user;
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
+      }
+    });
+  </script> -->
 </body>
 </html>
-
-
-
-
-
-
