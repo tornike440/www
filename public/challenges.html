@@ -1,289 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Challenges</title>
-  <link rel="stylesheet" href="challenges.css">
-
-  <style>
-    body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    background: #fff;
-    color: #222;
-    padding-bottom: 40px;
-  }
-
-/* Header */
-.header {
-  background: #2eb82e;
-  color: white;
-  padding: 40px 20px 60px;
-  text-align: left;
-  font-size: 24px;
-  font-weight: bold;
-  position: relative;
-}
-
-.header h1{
-  font-size: 32px;
-}
-
-
-/* Suggestions */
-.suggestions {
-  padding: 20px;
-}
-.suggestions h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-.suggestion-list {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-}
-.suggestion img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 5px;
-}
-.suggestion p {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* Favorite challenges */
-.favorites {
-  padding: 20px;
-}
-.favorites h2 {
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-.challenge-card {
-  background-size: cover;
-  background-position: center;
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 15px;
-  height: 130px;
-  display: flex;
-  align-items: flex-end;
-}
-.challenge-content {
-  background: rgba(0,0,0,0.5);
-  color: white;
-  padding: 10px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.challenge-content p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: bold;
-}
-.reward {
-  background: #ffcc00;
-  color: black;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.reward img {
-  width: 14px;
-  height: 14px;
-}
-
-/* Bottom Navigation */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #ddd;
-  padding: 8px 0;
-}
-.bottom-nav a {
-  text-align: center;
-  color: #666;
-  text-decoration: none;
-  font-size: 12px;
-}
-.bottom-nav img {
-  width: 22px;
-  height: 22px;
-  display: block;
-  margin: 0 auto 4px;
-}
-.bottom-nav a.active {
-  color: #ffcc00;
-}
-
-.fixedbtn {
-  position: fixed;
-  top: 30px;
-  right: 20px;
-  width: 60px;  /* bigger */
-  height: 60px; /* bigger */
-  background: rgb(89, 255, 0); /* make it visible */
-  color: white;
-  border-radius: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  cursor: pointer;
-  z-index: 1000; /* extra high */
-}
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco Challenges</title>
+<link rel="stylesheet" href="/node_modules/alk-life/css/alk-life.min.css">
+<style>
+  
+* { box-sizing:border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
+body { background:#f5f5f5; padding-bottom:80px;font-family: "ALK Life", sans-serif; }
+.header { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; text-align:left; padding:30px 20px 15px; background:#4CAF50; color:white; border-bottom-left-radius:20px; border-bottom-right-radius:20px; }
+.header h1 { font-size:24px; font-weight:bold; }
+.header .logout { margin-top:10px; padding:6px 12px; background:#388e3c; color:white; border:none; border-radius:6px; cursor:pointer; }
+.suggestions { display:flex; justify-content:space-around; margin:20px; }
+.suggestions img { width:50px; height:50px; }
+.suggestions div { text-align:center; font-size:12px; margin-top:5px; }
+.challenge-list { padding:0 20px; }
+.challenge-card { position:relative; border-radius:15px; margin-bottom:15px; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px; height:100px; background-size:cover; background-position:center; }
+.challenge-card .points { background:yellow; color:black; padding:4px 10px; border-radius:20px; font-weight:bold; }
+.challenge-card button { margin-left:10px; padding:4px 8px; border:none; border-radius:6px; background:#388e3c; color:white; cursor:pointer; }
+.challenge-card button:hover { background:#2e7d32; }
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:70px; background:white; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #ddd; z-index:100; }
+.nav-item { text-align:center; font-size:12px; color:#777; text-decoration:none; }
+.nav-item.active { color:#4CAF50; font-weight:bold; }
+.nav-item img { width:24px; height:24px; display:block; margin:0 auto 5px; }
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <h1>Find challenges</h1>
-    <button class="fixedbtn">?</button>
-  </header>
+<div class="header">
+  <h1>Find challenges</h1>
+  <p id="welcomeMsg"></p>
+  <button class="logout" id="logoutBtn">Logout</button>
+</div>
 
-  <!-- Suggestions -->
-  <section class="suggestions">
-    <h2>Our suggestions</h2>
-    <div class="suggestion-list">
-      <div class="suggestion">
-        <img src="blob.png" alt="Easy">
-        <p>Easy</p>
-      </div>
-      <div class="suggestion">
-        <img src="blob.png" alt="Savings">
-        <p>Savings</p>
-      </div>
-      <div class="suggestion">
-        <img src="blob.png" alt="Healthy">
-        <p>Healthy</p>
-      </div>
-      <div class="suggestion">
-        <img src="blob.png" alt="CO2">
-        <p>All</p>
-      </div>
+<div class="suggestions">
+  <div><img src="easy.png" alt=""><div>Easy</div></div>
+  <div><img src="savings.png" alt=""><div>Savings</div></div>
+  <div><img src="healthy.png" alt=""><div>Healthy</div></div>
+  <div><img src="co2.png" alt=""><div>All</div></div>
+</div>
+
+<h2 style="margin:0 20px 10px;">Favorite challenges</h2>
+<div class="challenge-list" id="challengeList">
+  <!-- Dynamic challenge cards will go here -->
+</div>
+
+<div class="bottom-nav">
+  <a class="nav-item" href="home.html"><img src="home.png" alt=""><br>Home</a>
+  <a class="nav-item active"><img src="challenges.png" alt=""><br>Challenges</a>
+  <a class="nav-item" href="profile.html"><img src="profile.png" alt=""><br>Profile</a>
+  <a class="nav-item" href="company.html"><img src="chatbot.png" alt=""><br>Company</a>
+</div>
+
+<script>
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if(!currentUser){ window.location.href="index.html"; }
+else { document.getElementById('welcomeMsg').textContent = `Hello, ${currentUser.username}!`; }
+
+document.getElementById('logoutBtn').addEventListener('click', ()=>{
+  localStorage.removeItem("currentUser");
+  window.location.href="index.html";
+});
+
+// Challenges array (example)
+const challenges = [
+  { text: "I'm emptying my personal mailbox's recycle bin", points: 1, img: "challenge1.png" },
+  { text: "I'm scanning my bin", points: 2, img: "challenge2.png" },
+  { text: "I'm sticking a stop ad on my letterbox", points: 4, img: "challenge3.png" }
+];
+
+const challengeList = document.getElementById("challengeList");
+
+challenges.forEach((ch, i)=>{
+  const div = document.createElement("div");
+  div.className = "challenge-card";
+  div.style.backgroundImage = `url('${ch.img}')`;
+  div.innerHTML = `
+    <div>${ch.text}</div>
+    <div>
+      <span class="points">+${ch.points} 💎</span>
+      <button id="btn${i}">Complete</button>
     </div>
-  </section>
+  `;
+  challengeList.appendChild(div);
 
-  <!-- Favorite challenges -->
-  <section class="favorites">
-    <h2>Favorite challenges</h2>
-
-    <div class="challenge-card" style="background-image: url('standby.jpg');">
-      <div class="challenge-content">
-        <p>I switch off my devices on standby</p>
-        <span class="reward">+ 1 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-    <div class="challenge-card" style="background-image: url('letterbox.jpg');">
-      <div class="challenge-content">
-        <p>I'm sticking a stop ad on my letterbox</p>
-        <span class="reward">+ 4 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-    <div class="challenge-card" style="background-image: url('social.jpg');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-
-    <div class="challenge-card" style="background-image: url('social.jpg');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-
-    <div class="challenge-card" style="background-image: url('social.jpg');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-
-    <div class="challenge-card" style="background-image: url('social.jpg');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-
-    <div class="challenge-card" style="background-image: url('social.jpg');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-
-
-    <div class="challenge-card" style="background-image: url('social.jpg');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-
-
-    <div class="challenge-card" style="background-image: url('social.jpg');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bottom Nav -->
-  <nav class="bottom-nav">
-    <a href="home.html"><img src="home.png" alt="Home"><span>Home</span></a>
-    <a href="challenges.html" class="active"><img src="challenges.png" alt="Challenges"><span>Challenges</span></a>
-    <a href="profile.html"><img src="profile.png" alt="Profile"><span>Profile</span></a>
-    <a href="company.html"><img src="chatbot.png" alt="Company"><span>Company</span></a>
-  </nav>
-
-
-
-
-  <script>
-  const user = JSON.parse(localStorage.getItem('user'));
-    const pointsEl = document.getElementById('points');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    if(user) {
-      pointsEl.textContent = `Points: ${user.points}`;
-    } else {
-      window.location.href = "index.html";
-    }
-
-    logoutBtn.addEventListener('click', () => {
-      localStorage.removeItem('user');
-      window.location.href = "index.html";
-    });
-  </script>
+  document.getElementById(`btn${i}`).addEventListener('click', ()=>{
+    currentUser.points += ch.points;
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    let users = JSON.parse(localStorage.getItem("users") || '[]');
+    const idx = users.findIndex(u=>u.username===currentUser.username);
+    if(idx>=0){ users[idx].points = currentUser.points; localStorage.setItem("users", JSON.stringify(users)); }
+    alert(`You earned ${ch.points} points! Total: ${currentUser.points}`);
+  });
+});
+</script>
 
 </body>
 </html>

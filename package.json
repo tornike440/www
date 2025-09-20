@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/tornike440/www#readme",
   "dependencies": {
+    "alk-life": "^1.0.0",
     "express": "^5.1.0"
   }
 }

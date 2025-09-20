@@ -1,340 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eco Home</title>
-  <style>
-    /* === KEEP ALL YOUR ORIGINAL STYLE HERE === */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background-color: #f5f5f5;
-      color: #333;
-      height: 100vh;
-      padding-bottom: 180px; /* leave space for bottom nav */
-    }
-
-    /* Header background layers */
-    .header-bg, .header-bg2 {
-      position: absolute;
-      height: 220px;
-      background: linear-gradient(135deg, #4CAF50 40%, #2e7d32 100%);
-      border-bottom-left-radius: 50% 20%;
-      border-bottom-right-radius: 50% 80%;
-      z-index: -10;
-      overflow: hidden;
-    }
-
-    .header-bg {
-      top: -100px;
-      left: -900px;
-      right: 0;
-    }
-
-    .header-bg2 {
-      top: -130px;
-      left: 0;
-      right: -300px;
-      transform: rotate(15deg);
-      opacity: 0.7;
-      z-index: -9;
-    }
-
-    /* Header content */
-    .header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px 15px 15px;
-    }
-
-    .logo {
-      width: 100px;
-      height: 100px;
-      border-radius: 20px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .header h1 {
-      font-size: 22px;
-      font-weight: bold;
-      color: #388e3c;
-      background: #fff;
-      padding: 8px 20px;
-      border-radius: 10px;
-    }
-
-    /* Section titles */
-    h2 {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 20px 20px 10px;
-      color: #222;
-    }
-
-    /* Cards */
-    .card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #fff;
-      border-radius: 15px;
-      padding: 15px;
-      margin: 0 20px 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .card img {
-      width: 40px;
-      height: 40px;
-      margin-right: 15px;
-      border-radius: 8px;
-    }
-
-    .card-content {
-      flex: 1;
-    }
-
-    .card-content h3 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 3px;
-      color: #333;
-    }
-
-    .card-content p {
-      font-size: 13px;
-      color: #777;
-    }
-
-    /* Challenge card */
-    .challenge-card {
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      color: white;
-      height: 120px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 10px 15px;
-      border-radius: 15px;
-      margin: 0 20px 15px;
-    }
-
-    .challenge-card .points {
-      background: yellow;
-      color: black;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .fixedbtn {
-      position: fixed;
-      top: 30px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background: red;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    /* Community Impact */
-    .impact-card {
-      background: #f9f9f9;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px auto;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      width: 90%;
-    }
-
-    .impact-card h2 {
-      color: #388e3c;
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .impact-card p {
-      margin: 4px 0;
-    }
-
-    .impact-card p:first-of-type {
-      font-weight: bold;
-      font-size: 16px;
-      color: #222;
-    }
-
-    .impact-card p:last-of-type {
-      font-size: 13px;
-      color: #666;
-    }
-
-    .impact-card img {
-      width: 120px;
-      border-radius: 10px;
-    }
-
-    /* Bottom nav */
-    .bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #ddd;
-  padding: 8px 0;
-}
-.bottom-nav a {
-  text-align: center;
-  color: #666;
-  text-decoration: none;
-  font-size: 12px;
-}
-.bottom-nav img {
-  width: 22px;
-  height: 22px;
-  display: block;
-  margin: 0 auto 4px;
-}
-.bottom-nav a.active {
-  color: #ffcc00;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco Home</title>
+<link rel="stylesheet" href="/node_modules/alk-life/css/alk-life.min.css">
+<style>
+/* KEEP your original style exactly as before */
+* { box-sizing:border-box; margin:0; padding:0; font-family: Arial; }
+body { background:#f5f5f5; padding-bottom:80px;font-family: "ALK Life", sans-serif; }
+.header-bg, .header-bg2 { position:absolute; height:220px; background:linear-gradient(135deg,#4CAF50 40%,#2e7d32 100%); border-radius:50% 20%; z-index:-10; overflow:hidden; }
+.header-bg { top:-100px; left:-900px; right:0; }
+.header-bg2 { top:-130px; left:0; right:-300px; transform:rotate(15deg); opacity:0.7; z-index:-9; }
+.header { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px 15px 15px; }
+.logo { width:200px;height:200px;border-radius:20px;background:#009c79;display:flex;align-items:center;justify-content:center;margin-bottom:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.header h1 { font-size:22px; font-weight:bold; color:#388e3c; background:#fff; padding:8px 20px; border-radius:10px; }
+h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
+.card { display:flex; align-items:center; justify-content:space-between; background:#fff; border-radius:15px; padding:15px; margin:0 20px 15px; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
+.card img { width:40px; height:40px; margin-right:15px; border-radius:8px; }
+.card-content { flex:1; }
+.card-content h3 { font-size:15px; font-weight:600; margin-bottom:3px; color:#333; }
+.card-content p { font-size:13px; color:#777; }
+.challenge-card { position:relative; background-size:cover; background-position:center; color:white; height:120px; display:flex; align-items:flex-end; justify-content:space-between; padding:10px 15px; border-radius:15px; margin:0 20px 15px; }
+.challenge-card .points { background:yellow; color:black; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:bold; }
+.fixedbtn { position:fixed; top:30px; right:20px; width:40px; height:40px; background:rgba(21, 255, 0, 0.75); color:white; border-radius:10%; display:flex; align-items:center; justify-content:center; font-size:32px; box-shadow:0 2px 6px rgba(0,0,0,0.2); cursor:pointer; z-index:1000; }
+.impact-card { background:#f9f9f9; border-radius:15px; padding:20px; margin:20px auto; display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:15px; width:90%; }
+.impact-card h2 { color:#388e3c; font-size:18px; margin-bottom:8px; }
+.impact-card p { margin:4px 0; }
+.impact-card p:first-of-type { font-weight:bold; font-size:16px; color:#222; }
+.impact-card p:last-of-type { font-size:13px; color:#666; }
+.impact-card img { width:120px; border-radius:10px; }
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:70px; background:white; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #ddd; z-index:100; }
+.bottom-nav img{ width:24px; height:24px; }
+.nav-item { text-align:center; font-size:12px; color:#777; }
+.nav-item a{
+  text-decoration:none;
+  color:inherit;
 }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .header h1 { font-size: 20px; }
-      .logo { width: 80px; height: 80px; }
-      .card-content h3 { font-size: 14px;}
-      .card-content p { font-size: 12px; }
-      .impact-card { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .impact-card img { width: 100%; max-width: 120px; }
-      .bottom-nav { height: 60px; }
-      .nav-item { font-size: 10px; }
-    }
-  </style>
+@media (max-width:480px){ .header h1{font-size:20px;} .logo{width:160px;height:160px;} .card-content h3{font-size:14px;} .card-content p{font-size:12px;} .impact-card{flex-direction:column;align-items:flex-start;gap:10px;} .impact-card img{width:100%; max-width:120px;} .bottom-nav{height:60px;} .nav-item{font-size:10px;} }
+
+</style>
 </head>
 <body>
-  <div class="header-bg"></div>
 
-  <div class="fixedbtn">?</div>
+<div class="header-bg"></div>
 
-  <!-- Header -->
-  <div class="header">
-    <div class="logo">
-      <img src="logo.png" alt="Logo" style="width:60px;height:60px;">
-    </div>
-    <h1>Act for your future</h1>
-    <p id="welcomeMsg"></p>
-    <button id="logoutBtn">Logout</button>
+<div class="fixedbtn">?</div>
+
+<div class="header">
+  <div class="logo"><img src="logo.png" alt="Logo" style="width:120px;height:120px;"></div>
+  <h1>იმოქმედე შენი მომავლისთვის</h1>
+  <p id="welcomeMsg"></p>
+</div>
+
+<h2>დღის პოზიტიური ამბები</h2>
+<div class="card">
+  <img src="earth.png" alt="earth icon">
+  <div class="card-content">
+    <h3>Maroc: le réseau de TGV s'étend</h3>
+    <p>CNTraveler</p>
   </div>
+</div>
 
-  <!-- Positive news -->
-  <h2>The positive news of the day</h2>
-  <div class="card">
-    <img src="earth.png" alt="earth icon">
-    <div class="card-content">
-      <h3>Maroc: le réseau de TGV s'étend</h3>
-      <p>CNTraveler</p>
-    </div>
+<h2>Today's challenge</h2>
+<div class="challenge-card" style="background:url('image.png');">
+  <div class="card-content"><h3>I'm watching a film/documentary<br>about ecology</h3></div>
+  <div class="points">+20 💎</div>
+  <button id="completeBtn" style="position:absolute; bottom:10px; right:10px;">Complete (+10 pts)</button>
+</div>
+
+<h2>My friends & me</h2>
+<div class="card" style="justify-content:flex-start;gap:15px;">
+  <img src="group-icon.png" alt="group icon" style="width:40px;height:40px;">
+  <div class="card-content">
+    <h3>Want to play in a group?</h3>
+    <p>Create your group here! <span style="color:#f1b000;">➔</span></p>
   </div>
+</div>
 
-  <!-- Challenge -->
-  <h2>Today's challenge</h2>
-  <div class="challenge-card" style="background-image: url('image.png');">
-      <div class="challenge-content">
-        <p>I'm an environmentalist influencer on social networks</p>
-        <span class="reward">+ 10 <img src="diamond.png" alt="Diamond"></span>
-      </div>
-    </div>
-
-  <!-- Friends -->
-  <h2>My friends & me</h2>
-  <div class="card" style="justify-content: flex-start; gap: 15px;">
-    <img src="group-icon.png" alt="group icon" style="width:40px;height:40px;">
-    <div class="card-content">
-      <h3>Want to play in a group?</h3>
-      <p>Create your group here! <span style="color:#f1b000;">➔</span></p>
-    </div>
+<div class="impact-card">
+  <div style="flex:1;">
+    <h2>The impact of our community</h2>
+    <p id="userPoints">Points: 0</p>
+    <p>Equivalent to 2,185 Paris/New York flights avoided</p>
   </div>
+  <img src="hand-plant.png" alt="hand holding plant">
+</div>
 
-  <!-- Community impact -->
-  <div class="impact-card">
-    <div style="flex:1;">
-      <h2>The impact of our community</h2>
-      <p id="userPoints">Points: 0</p>
-      <p>Equivalent to 2,185 Paris/New York flights avoided</p>
-    </div>
-    <img src="hand-plant.png" alt="hand holding plant">
-  </div>
+<div class="bottom-nav">
+  <div class="nav-item"><a href="home.html"><img src="home.png" alt=""><br>Home</a></div>
+  <div class="nav-item"><a href="challenges.html"><img src="challenges.png" alt=""><br>Challenges</a></div>
+  <div class="nav-item"><a href="profile.html"><img src="profile.png" alt=""><br>Profile</a></div>
+  <div class="nav-item"><a href="company.html"><img src="chatbot.png" alt=""><br>Company</a></div>
+</div>
 
-  <!-- Bottom nav -->
- <nav class="bottom-nav">
-    <a href="home.html"><img src="home.png" alt="Home"><span>Home</span></a>
-    <a href="challenges.html" class="active"><img src="challenges.png" alt="Challenges"><span>Challenges</span></a>
-    <a href="profile.html"><img src="profile.png" alt="Profile"><span>Profile</span></a>
-    <a href="company.html"><img src="chatbot.png" alt="Company"><span>Company</span></a>
-  </nav>
+<script>
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if(!currentUser){ window.location.href="index.html"; }
+else {
+  document.getElementById('welcomeMsg').textContent = `Hello, ${currentUser.username}!`;
+  document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
+}
 
-  <!-- <script>
-    // Load current user from localStorage
-    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (!currentUser) {
-      window.location.href = "index.html";
-    } else {
-      document.getElementById('welcomeMsg').textContent = `Hello, ${currentUser.username}!`;
-      document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
-    }
+document.getElementById('logoutBtn').addEventListener('click', ()=>{
+  localStorage.removeItem("currentUser");
+  window.location.href="index.html";
+});
 
-    // Logout
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      localStorage.removeItem("currentUser");
-      window.location.href = "index.html";
-    });
+// Complete challenge button
+document.getElementById('completeBtn').addEventListener('click', ()=>{
+  currentUser.points += 10;
 
-    // Complete challenge
-    document.getElementById('completeBtn').addEventListener('click', async () => {
-      const res = await fetch("/update-points", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: currentUser.username, points: 10 })
-      });
-      const data = await res.json();
-      if (data.success) {
-        currentUser = data.user;
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
-      }
-    });
-  </script> -->
+  // Update localStorage currentUser
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+  // Update in users array
+  let users = JSON.parse(localStorage.getItem("users") || '[]');
+  const idx = users.findIndex(u=>u.username===currentUser.username);
+  if(idx>=0){ users[idx].points = currentUser.points; localStorage.setItem("users", JSON.stringify(users)); }
+
+  // Update points display
+  document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
+  alert("Challenge completed! +10 points");
+});
+</script>
+
 </body>
 </html>
