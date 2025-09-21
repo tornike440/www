@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Coin Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #1a4b2a, #2E8B57);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #FFD700;
+        }
+        
+        .balance-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .balance-box {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .balance-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #a7f5c9;
+        }
+        
+        .balance-amount {
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .balance-amount i {
+            color: gold;
+            margin-right: 10px;
+        }
+        
+        .shop-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .product {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #FFD700, #2E8B57);
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product i {
+            font-size: 50px;
+            color: #8BC34A;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
+        }
+        
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #FFD700;
+        }
+        
+        .product-desc {
+            font-size: 14px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            flex-grow: 1;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .product-price i {
+            color: gold;
+            margin-right: 5px;
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+        
+        .buy-btn {
+            background: #FFD700;
+            color: #2E8B57;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .buy-btn:hover {
+            background: #FFC400;
+            transform: scale(1.05);
+        }
+        
+        .buy-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: white;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        
+        .github-link:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .notification.error {
+            background: #F44336;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .balance-container {
+                flex-direction: column;
+            }
+            
+            .shop-section {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .shop-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>Leaf Coin Store</span>
+            </div>
+            
+            <div class="actions">
+                <button class="action-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i>Refresh
+                </button>
+                <a href="profile.html" class="action-btn">
+                    <i class="fas fa-user"></i>Profile
+                </a>
+            </div>
+        </div>
+        
+        <h1>Your Leaf Coin Store</h1>
+        <p style="margin-bottom: 30px; opacity: 0.9;">Spend your hard-earned leaf coins on magical items</p>
+        
+        <div class="balance-container">
+            <div class="balance-box">
+                <div class="balance-title">Your Leaf Coins</div>
+                <div class="balance-amount">
+                    <i class="fas fa-coins"></i>
+                    <span id="leaf-coins">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shop-section">
+            <div class="product">
+                <i class="fas fa-tree"></i>
+                <div class="product-name">Ancient Oak</div>
+                <p class="product-desc">A majestic tree that provides wisdom and shelter. Grows 2x faster than regular trees.</p>
+                <div class="product-price">
+                    <i class="fas fa-coins"></i>
+                    <span>75</span>
+                </div>
+                <button class="buy-btn" data-id="1" data-name="Ancient Oak" data-price="75">Purchase</button>
+            </div>
+            
+            <div class="product">
+                <i class="fas fa-seedling"></i>
+                <div class="product-name">Golden Acorn</div>
+                <p class="product-desc">Plant this magical acorn to instantly grow a medium-sized tree with golden leaves.</p>
+                <div class="product-price">
+                    <i class="fas fa-coins"></i>
+                    <span>45</span>
+                </div>
+                <button class="buy-btn" data-id="2" data-name="Golden Acorn" data-price="45">Purchase</button>
+            </div>
+            
+            <div class="product">
+                <i class="fas fa-spa"></i>
+                <div class="product-name">Enchanted Fertilizer</div>
+                <p class="product-desc">Magical fertilizer that makes your plants grow 3x faster and twice as healthy.</p>
+                <div class="product-price">
+                    <i class="fas fa-coins"></i>
+                    <span>30</span>
+                </div>
+                <button class="buy-btn" data-id="3" data-name="Enchanted Fertilizer" data-price="30">Purchase</button>
+            </div>
+            
+            <div class="product">
+                <i class="fas fa-tint"></i>
+                <div class="product-name">Everfull Watering Can</div>
+                <p class="product-desc">A magical watering that never runs empty and waters plants with perfect precision.</p>
+                <div class="product-price">
+                    <i class="fas fa-coins"></i>
+                    <span>60</span>
+                </div>
+                <button class="buy-btn" data-id="4" data-name="Everfull Watering Can" data-price="60">Purchase</button>
+            </div>
+            
+            <div class="product">
+                <i class="fas fa-magic"></i>
+                <div class="product-name">Tree Growth Elixir</div>
+                <p class="product-desc">One drop of this powerful elixir can make a sapling grow into a full tree in seconds.</p>
+                <div class="product-price">
+                    <i class="fas fa-coins"></i>
+                    <span>120</span>
+                </div>
+                <button class="buy-btn" data-id="5" data-name="Tree Growth Elixir" data-price="120">Purchase</button>
+            </div>
+            
+            <div class="product">
+                <i class="fas fa-shield-alt"></i>
+                <div class="product-name">Plant Protection Charm</div>
+                <p class="product-desc">Protects your plants from diseases, pests, and harsh weather conditions.</p>
+                <div class="product-price">
+                    <i class="fas fa-coins"></i>
+                    <span>90</span>
+                </div>
+                <button class="buy-btn" data-id="6" data-name="Plant Protection Charm" data-price="90">Purchase</button>
+            </div>
+        </div>
+        
+        <a href="https://github.com/tornike440/www" class="github-link" target="_blank">
+            <i class="fab fa-github"></i> View on GitHub
+        </a>
+    </div>
+    
+    <div class="notification" id="notification">Item purchased successfully!</div>
+
+    <script>
+        // Get leaf coins from localStorage (from your profile)
+        function getLeafCoins() {
+            // Try different keys that might be used in the profile
+            const possibleKeys = ['leafCoins', 'leafs', 'leafCount', 'points', 'userLeafs'];
+            let leafCoins = 0;
+            
+            for (const key of possibleKeys) {
+                const value = localStorage.getItem(key);
+                if (value && !isNaN(value)) {
+                    leafCoins = parseInt(value);
+                    break;
+                }
+            }
+            
+            // If no value found, try to check for a user-specific key
+            if (leafCoins === 0) {
+                const username = localStorage.getItem('username') || 'currentUser';
+                const userKey = `${username}_leafs`;
+                const userValue = localStorage.getItem(userKey);
+                if (userValue && !isNaN(userValue)) {
+                    leafCoins = parseInt(userValue);
+                }
+            }
+            
+            return leafCoins;
+        }
+        
+        // Update leaf coins display
+        function updateLeafCoins() {
+            const leafCoins = getLeafCoins();
+            document.getElementById('leaf-coins').textContent = leafCoins;
+            updateBuyButtons();
+        }
+        
+        // Update buy buttons based on available coins
+        function updateBuyButtons() {
+            const leafCoins = getLeafCoins();
+            document.querySelectorAll('.buy-btn').forEach(button => {
+                const price = parseInt(button.getAttribute('data-price'));
+                if (leafCoins < price) {
+                    button.disabled = true;
+                    button.title = "Not enough leaf coins";
+                } else {
+                    button.disabled = false;
+                    button.title = "";
+                }
+            });
+        }
+        
+        // Purchase item
+        function purchaseItem(id, name, price) {
+            const leafCoins = getLeafCoins();
+            
+            if (leafCoins < price) {
+                showNotification("Not enough leaf coins!", true);
+                return false;
+            }
+            
+            // Deduct coins - try different keys
+            const possibleKeys = ['leafCoins', 'leafs', 'leafCount', 'points', 'userLeafs'];
+            let deducted = false;
+            
+            for (const key of possibleKeys) {
+                const value = localStorage.getItem(key);
+                if (value && !isNaN(value)) {
+                    const newValue = parseInt(value) - price;
+                    localStorage.setItem(key, newValue.toString());
+                    deducted = true;
+                    break;
+                }
+            }
+            
+            // If not found, try user-specific key
+            if (!deducted) {
+                const username = localStorage.getItem('username') || 'currentUser';
+                const userKey = `${username}_leafs`;
+                const userValue = localStorage.getItem(userKey);
+                if (userValue && !isNaN(userValue)) {
+                    const newValue = parseInt(userValue) - price;
+                    localStorage.setItem(userKey, newValue.toString());
+                    deducted = true;
+                }
+            }
+            
+            // If still not found, create a default key
+            if (!deducted) {
+                localStorage.setItem('leafCoins', (leafCoins - price).toString());
+            }
+            
+            // Save purchase history
+            const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+            purchases.push({
+                id,
+                name,
+                price,
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('purchases', JSON.stringify(purchases));
+            
+            // Update UI
+            updateLeafCoins();
+            
+            showNotification(`You purchased ${name} for ${price} leaf coins!`);
+            return true;
+        }
+        
+        // Notification function
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            
+            if (isError) {
+                notification.classList.add('error');
+            } else {
+                notification.classList.remove('error');
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Set up event listeners
+        document.querySelectorAll('.buy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+                
+                purchaseItem(id, name, price);
+            });
+        });
+        
+        document.getElementById('refresh-btn').addEventListener('click', () => {
+            updateLeafCoins();
+            showNotification("Balance updated!");
+        });
+        
+        // Initialize the UI
+        updateLeafCoins();
+        
+        // Check for changes in localStorage
+        setInterval(() => {
+            updateLeafCoins();
+        }, 2000);
+        
+        // Debug function to help identify the correct key
+        function debugLocalStorage() {
+            console.log("LocalStorage contents:");
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                console.log(`${key}: ${value}`);
+            }
+        }
+        
+        // Run debug on load to help identify the correct key
+        setTimeout(debugLocalStorage, 1000);
+    </script>
+</body>
+</html>

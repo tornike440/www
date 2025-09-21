@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eco Home</title>
-
 <style>
-/* KEEP your original style exactly as before */
 @font-face {
   font-family: 'BPGNino';
   src: url('./fonts/BPGNino.ttf') format('truetype');
@@ -14,7 +12,14 @@
   font-style: normal;
 }
 * { box-sizing:border-box; margin:0; padding:0;  }
-body { background:#f5f5f5; padding-bottom:80px;font-family: 'BPGNino', sans-serif; }
+body { 
+  background: #f5f5f5; 
+  padding-bottom: 80px;
+  font-family: 'BPGNino', sans-serif; 
+  position: relative;
+  background: linear-gradient(135deg, #f5f5f5 40%, #b2ebf2 100%);
+}
+
 .header-bg, .header-bg2 { position:absolute; height:220px; background:linear-gradient(135deg,#4CAF50 40%,#2e7d32 100%); border-radius:50% 20%; z-index:-10; overflow:hidden; }
 .header-bg { top:-100px; left:-900px; right:0; }
 .header-bg2 { top:-130px; left:0; right:-300px; transform:rotate(15deg); opacity:0.7; z-index:-9; }
@@ -25,7 +30,7 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 .card { display:flex; align-items:center; justify-content:space-between; background:#fff; border-radius:15px; padding:15px; margin:0 20px 15px; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
 .card img { width:40px; height:40px; margin-right:15px; border-radius:8px; }
 .card-content { flex:1; }
-.card-content h3 { font-size:15px; font-weight:600; margin-bottom:3px; color:#333; }
+.card-content h3 { font-size:15px; font-weight:600; margin-bottom:3px; color:#333; } /* Fixed color from #ffffff to #333 */
 .card-content p { font-size:13px; color:#777; }
 .challenge-card { position:relative; background-size:cover; background-position:center; color:white; height:120px; display:flex; align-items:flex-end; justify-content:space-between; padding:10px 15px; border-radius:15px; margin:0 20px 15px; }
 .challenge-card .points { background:yellow; color:black; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:bold; }
@@ -45,16 +50,12 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 }
 
 @media (max-width:480px){ .header h1{font-size:20px;} .logo{width:160px;height:160px;} .card-content h3{font-size:14px;} .card-content p{font-size:12px;} .impact-card{flex-direction:column;align-items:flex-start;gap:10px;} .impact-card img{width:100%; max-width:120px;} .bottom-nav{height:60px;} .nav-item{font-size:10px;} }
-
 </style>
 </head>
 <body>
 
 <div class="header-bg"></div>
-
 <div class="fixedbtn">?</div>
-
-
 
 <div class="header">
   <div class="logo"><img src="logo.png" alt="Logo" style="width:120px;height:120px;"></div>
@@ -62,25 +63,25 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
   <p id="welcomeMsg"></p>
 </div>
 
-<h2>დღის პოზიტიური ამბები</h2>
+<h2>new events</h2>
 <div class="card">
-  <img src="earth.png" alt="earth icon">
+  <img src="camp.png" alt="earth icon">
   <div class="card-content">
-    <h3>Maroc: le réseau de TGV s'étend</h3>
-    <p>CNTraveler</p>
+    <h3>new meeting in batumi(sun, 13:00)</h3>
+    <p>will be discussed: travel, overpopulation, etc.</p>
   </div>
 </div>
 
 <h2>Today's challenge</h2>
-<div class="challenge-card" style="background:url('image.png');">
+<div class="challenge-card" style="background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image.png');">
   <div class="card-content"><h3>I'm watching a film/documentary<br>about ecology</h3></div>
   <div class="points">+20 💎</div>
-  <button id="completeBtn" style="position:absolute; bottom:10px; right:10px;">Complete (+10 pts)</button>
+  <button id="completeBtn" style="position:absolute; bottom:10px; right:10px; background:#4CAF50; color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer;">Complete (+10 pts)</button>
 </div>
 
 <h2>My friends & me</h2>
 <div class="card" style="justify-content:flex-start;gap:15px;">
-  <img src="group-icon.png" alt="group icon" style="width:40px;height:40px;">
+  <img src="group.png" alt="group icon" style="width:40px;height:40px;">
   <div class="card-content">
     <h3>Want to play in a group?</h3>
     <p>Create your group here! <span style="color:#f1b000;">➔</span></p>
@@ -105,19 +106,19 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 
 <script>
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-if(!currentUser){ window.location.href="index.html"; }
-else {
+if(!currentUser){ 
+  window.location.href="index.html"; 
+} else {
   document.getElementById('welcomeMsg').textContent = `Hello, ${currentUser.username}!`;
-  document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
+  document.getElementById('userPoints').textContent = `Points: ${currentUser.points || 0}`;
 }
-
-document.getElementById('logoutBtn').addEventListener('click', ()=>{
-  localStorage.removeItem("currentUser");
-  window.location.href="index.html";
-});
 
 // Complete challenge button
 document.getElementById('completeBtn').addEventListener('click', ()=>{
+  // Initialize points if they don't exist
+  if (!currentUser.points) currentUser.points = 0;
+  
+  // Add points
   currentUser.points += 10;
 
   // Update localStorage currentUser
@@ -126,11 +127,19 @@ document.getElementById('completeBtn').addEventListener('click', ()=>{
   // Update in users array
   let users = JSON.parse(localStorage.getItem("users") || '[]');
   const idx = users.findIndex(u=>u.username===currentUser.username);
-  if(idx>=0){ users[idx].points = currentUser.points; localStorage.setItem("users", JSON.stringify(users)); }
+  if(idx>=0){ 
+    users[idx].points = currentUser.points; 
+    localStorage.setItem("users", JSON.stringify(users)); 
+  }
 
   // Update points display
   document.getElementById('userPoints').textContent = `Points: ${currentUser.points}`;
   alert("Challenge completed! +10 points");
+  
+  // Disable button after completion
+  document.getElementById('completeBtn').disabled = true;
+  document.getElementById('completeBtn').textContent = "Completed";
+  document.getElementById('completeBtn').style.background = "#ccc";
 });
 </script>
 

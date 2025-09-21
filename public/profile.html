@@ -12,7 +12,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* changed from height:100vh */
+            min-height: 100vh;
             padding-bottom: 180px;
         }
         .container {
@@ -120,6 +120,30 @@
             display: block;
             margin-bottom: 5px;
         }
+        .nav1 li a {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+        }
+        .nav1 li a:visited,
+        .nav1 li a:active {
+            color: inherit;
+        }
+        
+        /* Fix for icon and number alignment */
+        .stat-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .stat-container img {
+            width: 18px;
+            height: 18px;
+        }
 
         .but{
             width: 90%;
@@ -211,53 +235,66 @@
         /* Responsive adjustments */
         @media (max-width: 383px) {
             .nav2 li {
-                width: 100%;
-                margin: 10px 0px;
-                
+            width: 100%;
+            margin: 10px 0px;
+            
             }
             
             .sec1 h1 {
-                font-size: 28px;
+            font-size: 28px;
             }
             .nav1{
-                gap: 25px;
+            gap: 25px;
             }
             .nav1 li p {
-                font-size: 10px;
+            font-size: 10px;
             }
         }
 
         @media (max-width: 450px) {
             .nav2{
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
             }
             h1{
-                padding: 0px;
-                text-align: center;
+            padding: 0px;
+            text-align: center;
             }
         }
-    </style>
-</head>
-<body>
+        </style>
+    </head>
+    <body>
 
-    <button class="fixedbtn"><img src="settings.png" alt=""></button>
+        <button class="fixedbtn"><img src="settings.png" alt=""></button>
 
-    <header>
+        <header>
         <h1>My Profile</h1>
-    </header>
+        </header>
 
-    <section class="sec1">
+        <section class="sec1">
         <img src="sheep.png" alt="">
         <h1 id="nameDisplay"></h1>
         <p id="usernameDisplay"></p>
-    </section>
+        </section>
 
-    <section class="sec2">
+        <section class="sec2">
         <nav class="nav1">
-            <li><p><span><img src="trophy.png" alt="">1456th</span> <br>out of 1600 players</p></li>
-            <li><p><span><img src="leaf.png" alt=""> 0</span> <br>points</p></li>
+            <li><a href="leaderboard.html"><p><span><img src="trophy.png" alt="">1456th</span> <br>out of 1600 players</p></a></li>
+            <li><p>
+                <span class="stat-container">
+                    
+                    <span id="pointsDisplay">0</span>
+                </span>
+                <br><img src="leaf.png" alt="">points
+            </p></li>
+            <li><p>
+                <span class="stat-container">
+                    
+                    <span id="diamondsDisplay">0</span>
+                </span>
+                <br><img src="daimond.png" alt=""> diamonds
+            </p></li>
         </nav>
     </section>
 
@@ -270,12 +307,12 @@
         <ul style="display: flex; justify-content: space-around; list-style: none; padding: 0; margin: 0; width: 100%; gap: 5px; flex-wrap: wrap;">
             <li style="background: #00ff11;">
                 <img src="cloud.png" alt="">
-                <h2>0kg</h2>
+                <h2 id="co2Display">0kg</h2>
                 <p>of CO2 avoided</p>
             </li>
             <li style="background: #2672f5;">
                 <img src="money.png" alt="">
-                <h2>$0</h2>
+                <h2 id="savingsDisplay">$0</h2>
                 <p>of money saved</p>
             </li>
         </ul>
@@ -288,7 +325,7 @@
         <div class="nav-item"><a href="home.html"><img src="home.png" alt=""><br>Home</a></div>
         <div class="nav-item"><a href="challenges.html"><img src="challenges.png" alt=""><br>Challenges</a></div>
         <div class="nav-item"><a href="profile.html"><img src="profile.png" alt=""><br>Profile</a></div>
-        <div class="nav-item"><a href="company.html"><img src="chatbot.png" alt=""><br>Company</a></div>
+        <div class="nav-item"><a href="shop.html"><img src="chatbot.png" alt=""><br>Company</a></div>
     </div>
 
     <script>
@@ -300,6 +337,23 @@
             document.getElementById('nameDisplay').textContent = `${currentUser.name}`;
             // Print username in p
             document.getElementById('usernameDisplay').textContent = `${currentUser.username}`;
+            
+            // Display user's points, diamonds, CO2 savings, and money savings
+            document.getElementById('pointsDisplay').textContent = `${currentUser.points || 0}`;
+            document.getElementById('diamondsDisplay').textContent = `${currentUser.diamonds || 0}`;
+            document.getElementById('co2Display').textContent = `${currentUser.co2 || 0}kg`;
+            document.getElementById('savingsDisplay').textContent = `$${currentUser.savings || 0}`;
+            
+            // Calculate and update ranking based on points
+            updateRanking((currentUser.points || 0) + ((currentUser.diamonds || 0) * 10));
+        }
+        
+        // Function to update ranking (this is a simplified version)
+        function updateRanking(totalScore) {
+            // In a real app, you would compare with other users' data
+            // For now, we'll use a simple formula based on total score
+            const rank = Math.max(1, 1600 - Math.floor(totalScore / 5));
+            document.querySelector('.nav1 li:nth-child(1) p span').innerHTML = '<img src="trophy.png" alt="">' + rank + 'th';
         }
     </script>
 
