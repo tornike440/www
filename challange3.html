@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            padding-bottom: 280px;
+        }
+
+        header{
+            background-image: url(elwaste2.png);
+            object-fit: fill;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding: 50px 20px;
+            border-bottom: 10px solid green;
+        }
+
+        header p{
+            font-size: 30px;
+            color: white;
+        }
+
+        .div1{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+        .div1 img{
+            width: 30px;
+        }
+        header p span img{
+            width: 30px;
+        }
+
+        .normal{
+            font-weight: 700;
+            font-size: 36px;
+            color: white;
+        }
+
+        .points { 
+            font-size: 15px; 
+            font-weight: bold; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: yellow;
+            color: #388e3c;
+            box-shadow: 0 2px 8px rgba(76,175,80,0.08);
+            border: 1px solid #e0e0a0;
+            margin: 8px 0;
+            transition: box-shadow 0.2s;
+        }
+        .points img {
+            width: 18px;
+            height: 18px;
+            margin-left: 4px;
+        }
+
+        .div2{
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav2 {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 95%;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .nav2 li {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            border-radius: 10px;
+            height: 211px;
+            width: 46%;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+        }
+        .nav2 li img {
+            width: 60px;
+            height: auto;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .sec1{
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #toggleBtn{
+            background-color: #00ff11;
+            height: 50px;
+            border-radius: 25px;
+            width: 180px;
+            border: none;
+            font-size: 20px;
+            
+        }
+
+        .buttt{
+            width: 70%;
+            background-color: #00ff11;
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            font-size: 20px;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .popup-content2 {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .popup-content img{
+            width: 50px;
+        }
+        
+        .div0{
+            position: fixed;
+            padding: 20px 0px;
+            bottom: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .div3{
+            flex-wrap: wrap;
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .buttt{
+            border: none;
+            width: 200px;
+        }
+        
+        .info-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        
+        .info-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .popup-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #4CAF50;
+        }
+        
+        .source-content {
+            margin-bottom: 15px;
+        }
+        
+        .source-content p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .source-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .source-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .source-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+        }
+        
+        .source-link {
+            color: #4CAF50;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .bottom-nav { 
+            position:fixed; 
+            bottom:0; 
+            left:0; 
+            right:0; 
+            height:70px; 
+            background:white; 
+            display:flex; 
+            justify-content:space-around; 
+            align-items:center; 
+            border-top:1px solid #ddd; 
+            z-index:100; 
+        }
+        .nav-item { 
+            text-align:center; 
+            font-size:12px; 
+            color:#777; 
+            text-decoration:none; 
+        }
+        .nav-item.active { 
+            color:#4CAF50; 
+            font-weight:bold; 
+        }
+        .nav-item img { 
+            width:24px; 
+            height:24px; 
+            display:block; 
+            margin:0 auto 5px; 
+        }
+        .vermovifiqre{
+            width: 80%;
+            height: 40px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .div-1{
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+        .sec3{
+            display: flex;
+            flex-direction: column;
+            padding: 0px 5%;
+
+            gap: 40px;
+
+            align-items: start;
+            justify-content: start;
+
+        }
+
+        .sec3 h3{
+            font-size: 32px;
+            font-weight: 600;
+
+        }
+        .sec3  nav {
+            font-size: 20px;
+            font-weight: 500;
+            gap: 20px;
+        }
+
+         .recycling-info {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.recycling-info h3 {
+  color: #2E7D32;
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.reason {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  background: #F1F8E9;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.reason-number {
+  background: #4CAF50;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.reason-content {
+  flex: 1;
+}
+
+.reason-content h4 {
+  margin: 0 0 5px 0;
+  color: #33691E;
+}
+
+.reason-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+
+        @media (max-width: 383px) {
+            .nav2 li {
+                width: 100%;
+                margin: 10px 0px;
+            }
+        }
+        @media (max-width: 450px) {
+            .nav2{
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="div1"><img src="back.png" alt=""> <a href="challenges.html" style="text-decoration: none;"><p>back</p></a></div>
+        <h3 class="normal">Electronic waste recycling</h3>
+        <div class="div2">
+            <div>
+                <span class="points">+5 <img src="leaf.png" alt=""></span>
+            </div>
+            <p><span>⭐⭐⭐⭐</span>52 ratings</p>
+        </div>
+    </header>
+
+    <section class="sec1">
+        <div class="div3">
+            <h3 class="normal" style="color: black;">Challenge impact</h3>
+            <button id="toggleBtn"><span>one time</span> / annual</button>
+        </div>
+
+        <nav class="nav2">
+            <ul style="display: flex; justify-content: space-around; list-style: none; padding: 0; margin: 0; width: 100%; gap: 5px; flex-wrap: wrap;">
+                <li style="background: #00ff11;">
+                    <img src="cloud.png" alt="">
+                    <h2>5kg</h2>
+                    <p>of CO2 avoided</p>
+                </li>
+                <li style="background: #2672f5;">
+                    <img src="money.png" alt="">
+                    <h2>$100</h2>
+                    <p>of money saved</p>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="div-1"><button id="showInfoPopup" class="info-btn"><img src="info.png" alt="">calculation and source(s)</button></div>
+        
+        <div class="div0">
+            <button id="doneBtn" class="buttt">I completed the challenge</button>
+            <button id="showReminderPopup" class="buttt">I commit to doing it</button>
+        </div>
+
+        <!-- Reminder Popup -->
+        <div class="popup-overlay" id="reminderPopupOverlay">
+            <div class="popup-content">
+                <img src="bell.png" alt="">
+                <h2>Schedule a reminder</h2>
+                <p>make sure the app notifications are enabled in your settings!</p>
+                <h5>1 time per semester</h5>
+                <button class="vermovifiqre">Yes</button>
+                <button class="vermovifiqre" style="color: green; background-color: white;">No</button>
+            </div>
+        </div>
+        
+        <!-- Calculation and Sources Popup -->
+        <div class="popup-overlay" id="infoPopupOverlay">
+            <div class="popup-content2">
+                <div class="popup-header">
+                    <h2>Calculation and source(s)</h2>
+                    <button class="close-btn">Close</button>
+                </div>
+                <div class="source-content">
+                    <p>In a few words</p>
+                    <ul class="source-list">
+                        <li>Electronic waste contains many different hazardous and toxic substances that harm the environment and our health.</li>
+                        <li>By 2030, the amount of e-waste worldwide will reach 82 billion kg, a challenge that will create serious environmental and economic problems.</li>
+                    </ul>
+                    
+                    <p><strong>Learn more</strong></p>
+                    
+                    <p><a href="https://wasteless.ge/home/ka" style="text-decoration: none;">wasteless</a></p>
+                    <p><a href="https://wasteless.ge/full_new/ka/78"style="text-decoration: none;">Why should we recycle electronic waste?</a></p>
+                    
+                    <p>
+                        <a href="https://www.youtube.com/watch?v=a9bwz9SQGd8" class="source-link" target="_blank">
+                            Specific waste recycling-Wasteless
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+      <div class="recycling-info">
+    <h3>Why Care About E-Waste?</h3>
+    
+    <div class="reason">
+      <div class="reason-number">1</div>
+      <div class="reason-content">
+        <h4>Protect Human Health</h4>
+        <p>Electronic waste contains hazardous substances like lead, mercury, and cadmium. Improper disposal can contaminate air, water, and soil, posing serious health risks to people and communities.</p>
+      </div>
+    </div>
+    
+    <div class="reason">
+      <div class="reason-number">2</div>
+      <div class="reason-content">
+        <h4>Preserve the Environment</h4>
+        <p>E-waste that ends up in landfills releases toxic chemicals, polluting ecosystems and harming wildlife. Recycling electronics helps prevent environmental damage and conserves natural resources.</p>
+      </div>
+    </div>
+    
+    <div class="reason">
+      <div class="reason-number">3</div>
+      <div class="reason-content">
+        <h4>Recover Valuable Materials</h4>
+        <p>Electronics contain precious metals like gold, silver, and copper. Recycling allows these materials to be reused, reducing the need for mining and lowering the environmental footprint.</p>
+      </div>
+    </div>
+    </div>
+
+
+
+    <div class="bottom-nav">
+        <a class="nav-item" href="home.html"><img src="home.png" alt=""><br>Home</a>
+        <a class="nav-item active"><img src="challenges.png" alt=""><br>Challenges</a>
+        <a class="nav-item" href="profile.html"><img src="profile.png" alt=""><br>Profile</a>
+        <a class="nav-item" href="company.html"><img src="chatbot.png" alt=""><br>Company</a>
+    </div>
+
+    <script>
+        // User check
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if(!currentUser){ window.location.href="index.html"; }
+
+        // Challenge data
+        const challengeId = 'elwaste';
+        const oneTime = { co2: 5, savings: 100, points: 5 };
+        const annual = { co2: oneTime.co2*12, savings: oneTime.savings*12, points: oneTime.points*12 };
+
+        let showingAnnual = false;
+        const toggleBtn = document.getElementById("toggleBtn");
+        const doneBtn = document.getElementById("doneBtn");
+
+        // Nav elements
+        const co2El = document.querySelector(".nav2 li:nth-child(1) h2");
+        const moneyEl = document.querySelector(".nav2 li:nth-child(2) h2");
+
+        // Load completed challenges
+        let completed = JSON.parse(localStorage.getItem(`${currentUser.username}_completed`) || '{}');
+        if(completed[challengeId]){
+            co2El.textContent = `${completed[challengeId].co2}kg`;
+            moneyEl.textContent = `$${completed[challengeId].savings}`;
+            doneBtn.disabled = true;
+        }
+
+        // Toggle one-time / annual
+        toggleBtn.addEventListener('click', ()=>{
+            if(completed[challengeId]) return; 
+            showingAnnual = !showingAnnual;
+            co2El.textContent = showingAnnual ? `${annual.co2}kg` : `${oneTime.co2}kg`;
+            moneyEl.textContent = showingAnnual ? `$${annual.savings}` : `$${oneTime.savings}`;
+        });
+
+        // Done button logic
+        doneBtn.addEventListener('click', ()=>{
+            if(completed[challengeId]) return;
+            const selected = showingAnnual ? annual : oneTime;
+
+            // Save completed challenge
+            completed[challengeId] = selected;
+            localStorage.setItem(`${currentUser.username}_completed`, JSON.stringify(completed));
+
+            // Update current user totals
+            currentUser.points = (currentUser.points || 0) + selected.points;
+            currentUser.co2 = (currentUser.co2 || 0) + selected.co2;
+            currentUser.savings = (currentUser.savings || 0) + selected.savings;
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+            co2El.textContent = `${selected.co2}kg`;
+            moneyEl.textContent = `$${selected.savings}`;
+
+            doneBtn.disabled = true;
+            alert(`Challenge completed!\nPoints: ${selected.points}\nCO₂ avoided: ${selected.co2}kg\nSavings: ${selected.savings}$`);
+        });
+
+        // Popup functionality
+        const showReminderPopupBtn = document.getElementById("showReminderPopup");
+        const reminderPopupOverlay = document.getElementById("reminderPopupOverlay");
+        const reminderPopupButtons = reminderPopupOverlay.querySelectorAll("button");
+        
+        const showInfoPopupBtn = document.getElementById("showInfoPopup");
+        const infoPopupOverlay = document.getElementById("infoPopupOverlay");
+        const infoCloseBtn = infoPopupOverlay.querySelector(".close-btn");
+        
+        // Show reminder popup
+        showReminderPopupBtn.addEventListener('click', () => {
+            reminderPopupOverlay.style.display = 'flex';
+        });
+        
+        // Show info popup
+        showInfoPopupBtn.addEventListener('click', () => {
+            infoPopupOverlay.style.display = 'flex';
+        });
+        
+        // Close info popup
+        infoCloseBtn.addEventListener('click', () => {
+            infoPopupOverlay.style.display = 'none';
+        });
+        
+        // Close reminder popup when buttons are clicked
+        reminderPopupButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                reminderPopupOverlay.style.display = 'none';
+            });
+        });
+        
+        // Close popups when clicking outside
+        document.querySelectorAll('.popup-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

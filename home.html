@@ -29,8 +29,8 @@ body {
 h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 .card { display:flex; align-items:center; justify-content:space-between; background:#fff; border-radius:15px; padding:15px; margin:0 20px 15px; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
 .card img { width:40px; height:40px; margin-right:15px; border-radius:8px; }
-.card-content { flex:1; }
-.card-content h3 { font-size:15px; font-weight:600; margin-bottom:3px; color:#333; } /* Fixed color from #ffffff to #333 */
+.card-content { flex:1;; }
+.card-content h3 { font-size:15px; font-weight:600; margin-bottom:3px; color: #ffffff; width: 30%; } /* Fixed color from #ffffff to #333 */
 .card-content p { font-size:13px; color:#777; }
 .challenge-card { position:relative; background-size:cover; background-position:center; color:white; height:120px; display:flex; align-items:flex-end; justify-content:space-between; padding:10px 15px; border-radius:15px; margin:0 20px 15px; }
 .challenge-card .points { background:yellow; color:black; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:bold; }
@@ -67,32 +67,36 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 <div class="card">
   <img src="camp.png" alt="earth icon">
   <div class="card-content">
-    <h3>new meeting in batumi(sun, 13:00)</h3>
+    <h3 style="color: #222; width: 50%;">new meeting in batumi(sun, 13:00)</h3>
     <p>will be discussed: travel, overpopulation, etc.</p>
   </div>
 </div>
 
 <h2>Today's challenge</h2>
-<div class="challenge-card" style="background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image.png');">
-  <div class="card-content"><h3>I'm watching a film/documentary<br>about ecology</h3></div>
-  <div class="points">+20 💎</div>
-  <button id="completeBtn" style="position:absolute; bottom:10px; right:10px; background:#4CAF50; color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer;">Complete (+10 pts)</button>
-</div>
+  <a href="challenges.html" style="text-decoration: none;color: rgb(255, 255, 255);">
+    <div class="challenge-card" style="background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image.png');">
+    <div class="card-content"><h3>I'm watching a film/documentary<br>about ecology</h3></div>
+    <div class="points">+20 💎</div>
+    <button id="completeBtn" style="position:absolute; bottom:10px; right:10px; background:#4CAF50; color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer;">Complete (+10 pts)</button>
+    </div>
+</a>
 
 <h2>My friends & me</h2>
-<div class="card" style="justify-content:flex-start;gap:15px;">
-  <img src="group.png" alt="group icon" style="width:40px;height:40px;">
-  <div class="card-content">
-    <h3>Want to play in a group?</h3>
-    <p>Create your group here! <span style="color:#f1b000;">➔</span></p>
+<a href="profile.html" style="text-decoration: none;color: black;">
+    <div class="card" style="justify-content:flex-start;gap:15px;">
+    <img src="group.png" alt="group icon" style="width:40px;height:40px;">
+    <div class="card-content">
+      <h3>Want to play in a group?</h3>
+      <p>Create your group here! <span style="color:#f1b000;">➔</span></p>
+    </div>
   </div>
-</div>
+</a>
 
 <div class="impact-card">
   <div style="flex:1;">
     <h2>The impact of our community</h2>
     <p id="userPoints">Points: 0</p>
-    <p>Equivalent to 2,185 Paris/New York flights avoided</p>
+    <p>Equivalent to 2,185 Paris/New York flights avoided 😁😁</p>
   </div>
   <img src="hand-plant.png" alt="hand holding plant">
 </div>
