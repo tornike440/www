@@ -13,21 +13,21 @@
 }
 * { box-sizing:border-box; margin:0; padding:0;  }
 body { 
-  background: #f5f5f5; 
+  background:  #328365; 
   padding-bottom: 80px;
   font-family: 'BPGNino', sans-serif; 
   position: relative;
-  background: linear-gradient(135deg, #f5f5f5 40%, #b2ebf2 100%);
+
 }
 
-.header-bg, .header-bg2 { position:absolute; height:220px; background:linear-gradient(135deg,#4CAF50 40%,#2e7d32 100%); border-radius:50% 20%; z-index:-10; overflow:hidden; }
+.header-bg, .header-bg2 { position:absolute; height:220px; background:linear-gradient(135deg,#ceffd0 40%,#6fff77 100%); border-radius:50% 20%; z-index:-10; overflow:hidden; }
 .header-bg { top:-100px; left:-900px; right:0; }
 .header-bg2 { top:-130px; left:0; right:-300px; transform:rotate(15deg); opacity:0.7; z-index:-9; }
 .header { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px 15px 15px; }
-.logo { width:200px;height:200px;border-radius:20px;background:#009c79;display:flex;align-items:center;justify-content:center;margin-bottom:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.logo { width:200px;height:200px;border-radius:20px;background:#ffffff;display:flex;align-items:center;justify-content:center;margin-bottom:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
 .header h1 { font-size:22px; font-weight:bold; color:#388e3c; background:#fff; padding:8px 20px; border-radius:10px; }
-h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
-.card { display:flex; align-items:center; justify-content:space-between; background:#fff; border-radius:15px; padding:15px; margin:0 20px 15px; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
+h2 { font-size:22px;font-weight:700;margin:20px 20px 10px;color:#ffffff; }
+.card { display:flex; align-items:center; justify-content:space-between; background:linear-gradient(135deg,#ceffd0 40%,#84ff8a 100%); border-radius:15px; padding:15px; margin:0 20px 15px; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
 .card img { width:40px; height:40px; margin-right:15px; border-radius:8px; }
 .card-content { flex:1;; }
 .card-content h3 { font-size:15px; font-weight:600; margin-bottom:3px; color: #ffffff; width: 30%; } /* Fixed color from #ffffff to #333 */
@@ -35,8 +35,8 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 .challenge-card { position:relative; background-size:cover; background-position:center; color:white; height:120px; display:flex; align-items:flex-end; justify-content:space-between; padding:10px 15px; border-radius:15px; margin:0 20px 15px; }
 .challenge-card .points { background:yellow; color:black; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:bold; }
 .fixedbtn { position:fixed; top:30px; right:20px; width:40px; height:40px; background:rgba(21, 255, 0, 0.75); color:white; border-radius:10%; display:flex; align-items:center; justify-content:center; font-size:32px; box-shadow:0 2px 6px rgba(0,0,0,0.2); cursor:pointer; z-index:1000; }
-.impact-card { background:#f9f9f9; border-radius:15px; padding:20px; margin:20px auto; display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:15px; width:90%; }
-.impact-card h2 { color:#388e3c; font-size:18px; margin-bottom:8px; }
+.impact-card { background:#f9f9f9; border-radius:15px; padding:20px 20px; margin:20px auto; display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:15px; width:95%; text-align: left;}
+.impact-card h2 { color:#388e3c; font-size:24px; margin-bottom:8px; }
 .impact-card p { margin:4px 0; }
 .impact-card p:first-of-type { font-weight:bold; font-size:16px; color:#222; }
 .impact-card p:last-of-type { font-size:13px; color:#666; }
@@ -58,9 +58,8 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 <div class="fixedbtn">?</div>
 
 <div class="header">
-  <div class="logo"><img src="logo.png" alt="Logo" style="width:120px;height:120px;"></div>
+  <div class="logo"><img src="sheepp.png" alt="Logo" style="width:243px;height: auto; padding-bottom: 0;"></div>
   <h1>იმოქმედე შენი მომავლისთვის</h1>
-  <p id="welcomeMsg"></p>
 </div>
 
 <h2>new events</h2>
@@ -86,7 +85,7 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
     <div class="card" style="justify-content:flex-start;gap:15px;">
     <img src="group.png" alt="group icon" style="width:40px;height:40px;">
     <div class="card-content">
-      <h3>Want to play in a group?</h3>
+      <h3 style="color: #222;">Want to play in a group?</h3>
       <p>Create your group here! <span style="color:#f1b000;">➔</span></p>
     </div>
   </div>
@@ -94,7 +93,7 @@ h2 { font-size:18px;font-weight:bold;margin:20px 20px 10px;color:#222; }
 
 <div class="impact-card">
   <div style="flex:1;">
-    <h2>The impact of our community</h2>
+    <h2 >The impact of our community</h2>
     <p id="userPoints">Points: 0</p>
     <p>Equivalent to 2,185 Paris/New York flights avoided 😁😁</p>
   </div>
